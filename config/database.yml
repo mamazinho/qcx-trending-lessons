@@ -5,7 +5,6 @@ default: &default
   username: postgres
   password: password
   pool: 5
-  task task_name: :environment do end
 
 development:
   <<: *default

@@ -5,4 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-# https://raw.githubusercontent.com/qcx/desafio-backend/master/question_access.json

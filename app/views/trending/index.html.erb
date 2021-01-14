@@ -1,0 +1,27 @@
+<h1>Hello World</h1>
+
+    <table>
+    <thead>
+        <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Acesso diário</th>
+        <th>Disciplina</th>
+        <th colspan="3"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @questions.each do |question| %>
+        <tr>
+            <td><%= question['statement'] %></td>
+            <td><%= question['text'] %></td>
+            <td><%= question['daily_access'] %></td>
+            <td><%= question['discipline'] %></td>
+            <!-- <td><%= link_to "Show", question %></td> -->
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+
+    <br>
