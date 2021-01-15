@@ -1,2 +1,40 @@
-<h1>PerPeriod#index</h1>
-<p>Find me in app/views/per_period/index.html.erb</p>
+<h2>Essa página mostra as questões mais acessadas em determinado período</h2>
+<p>
+    <!-- <span>Aqui encontram-se os dados das questões e seus acessos diários, </span>
+    <span>caso deseje ver os detalhes dessa disciplina, como seus textos, basta clicar no botão <b>Mostrar detalhes</b></span> -->
+</p>
+
+<% if @questions.length > 10 %>
+    <button><%= link_to "Ocultar detalhes", :all => false %></button>
+<% end %>
+
+<table>
+    <thead>
+        <tr>
+
+            <% if @questions.length > 10 %>
+                <th>Title</th>
+                <th>Content</th>
+            <% end %>
+            <th>Disciplina</th>
+            <th>Acesso diário</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @questions.each_with_index do |question, index| %>
+            <%= question['daily_access'] %>
+            <tr>
+                <% if @questions.length > 10 %>
+                    <td><%= question['statement'] %></td>
+                    <td><%= question['text'] %></td>
+                <% end %>
+                <td><%= question['discipline'] %></td>
+                <td><%= question['date'] %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<% if @questions.length <= 10 %>
+    <button><%= link_to "Mostrar detalhes", :all => true %></button>
+<% end %>
