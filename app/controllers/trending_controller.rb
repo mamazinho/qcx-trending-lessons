@@ -3,14 +3,13 @@ require 'json'
 
 class TrendingController < ApplicationController
   def index
-    uri = URI('https://raw.githubusercontent.com/qcx/desafio-backend/master/questions.json')
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    
-    request = Net::HTTP::Get.new(uri.path, {'Content-Type' => 'application/json'})
-    
-    response = http.request(request)
-    puts('aaaaaaaaaa', response.body)
-    @questions = JSON.parse(response.body)
+    if params['all'] == "true" then
+      @questions = Question.order(:discipline).all
+    else
+      params = {}
+      @questions = Question.select(:discipline, :daily_access).distinct.order(:discipline).first(10)
+    end
+    for q in @questions do
+    end
   end
 end

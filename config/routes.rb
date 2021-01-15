@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  get 'trending/index'
-  resources :questions
+  
+  get '/', to: 'welcome#index'
+  get '/per_period', to: 'per_period#index'
+  get '/trending', to: 'trending#index'
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  root 'trending#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
