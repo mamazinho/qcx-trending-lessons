@@ -6,10 +6,13 @@ class PerPeriodController < ApplicationController
       ).join_sources
     ).limit(10)
 
-    # puts(QuestionsAccess.group("month(created_at)").count)
-    # puts(@questions.group("month(created_at)").count)
-    for question in @questions do
-      puts(question['created_at'].to_s)
+    if params['period'] == "month" then
+      @selected = @questions.group_by { |question| question.created_at.beginning_of_month }
+    elsif params['period'] == "year" then
+      @selected = @questions.group_by { |question| question.created_at.beginning_of_year }
+    else
+      @selected = @questions.group_by { |question| question.created_at.beginning_of_week }
     end
+
   end
 end

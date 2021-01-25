@@ -4,37 +4,26 @@
     <span>caso deseje ver os detalhes dessa disciplina, como seus textos, basta clicar no botão <b>Mostrar detalhes</b></span> -->
 </p>
 
-<% if @questions.length > 10 %>
-    <button><%= link_to "Ocultar detalhes", :all => false %></button>
+<% if @selected.length <= 10 %>
+    <button><%= link_to "By week", :period => 'week' %></button>
+<% end %>
+<% if @selected.length <= 10 %>
+    <button><%= link_to "By month", :period => 'month' %></button>
+<% end %>
+<% if @selected.length <= 10 %>
+    <button><%= link_to "By year", :period => 'year' %></button>
 <% end %>
 
 <table>
     <thead>
         <tr>
-
-            <% if @questions.length > 10 %>
-                <th>Title</th>
-                <th>Content</th>
-            <% end %>
+            <th>Title</th>
+            <th>Content</th>
             <th>Disciplina</th>
             <th>Acesso diário</th>
         </tr>
     </thead>
     <tbody>
-        <% @questions.each_with_index do |question, index| %>
-            <%= question['daily_access'] %>
-            <tr>
-                <% if @questions.length > 10 %>
-                    <td><%= question['statement'] %></td>
-                    <td><%= question['text'] %></td>
-                <% end %>
-                <td><%= question['discipline'] %></td>
-                <td><%= question['date'] %></td>
-            </tr>
-        <% end %>
+        <td><%= @selected %></td>
     </tbody>
 </table>
-
-<% if @questions.length <= 10 %>
-    <button><%= link_to "Mostrar detalhes", :all => true %></button>
-<% end %>
